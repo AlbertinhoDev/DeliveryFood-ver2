@@ -17,7 +17,6 @@ final class AppCoordinator {
         self.window = window
         self.router = router
     }
-    
     private func startMapFlow() {
         let mapCoordinator = Map.FlowCoordinator(router: router)
         mapCoordinator.finishFlow = { [unowned self] in
