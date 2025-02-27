@@ -21,7 +21,7 @@ extension Map {
     }
 }
 
-extension Map.FlowCoordinator: Navigation.Coordinator { //NameSpacing
+extension Map.FlowCoordinator: Navigation.Coordinator {
     public func start() {
         let viewController = screenBuilder.makeMapViewController(router: self, diContainer: diContainer)
         router.setRoot(viewController: viewController, animated: true)

@@ -1,7 +1,7 @@
 import Navigation
 import UIKit
 
-@UIApplicationMain //точка входа в программу
+@UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private var coordinator: Coordinator?

@@ -21,7 +21,7 @@ extension Catalog {
     }
 }
 
-extension Catalog.FlowCoordinator: Navigation.Coordinator { //NameSpacing
+extension Catalog.FlowCoordinator: Navigation.Coordinator {
     public func start() {
         let viewController = screenBuilder.makeProductViewController(router: self, diContainer: diContainer)
         router.setRoot(viewController: viewController, animated: true)

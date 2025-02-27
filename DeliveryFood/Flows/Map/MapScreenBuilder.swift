@@ -15,7 +15,7 @@ extension Map {
 extension Map.ScreenBuilder: Map.ScreenBuildable {
     public func makeMapViewController(router: Map.Screen.Map.RoutingLogic, diContainer: Map.DiContainerable) -> UIViewController {
         let viewController = Map.Screen.Map.ViewController()
-        let presenter = Map.Screen.Map.Presenter()
+        let presenter = Map.Screen.Map.Presenter(apiService: diContainer.apiService)
         
         viewController.presenter = presenter
         presenter.viewController = viewController
