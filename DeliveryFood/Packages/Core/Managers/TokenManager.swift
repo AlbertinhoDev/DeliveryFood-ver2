@@ -1,11 +1,11 @@
 import Foundation
 
-public protocol AuthManagable {
+public protocol TokenManagable {
     func fetchAccessToken() throws -> String
     func save(accessToken: String, refreshToken: String) throws
 }
 
-public final class AuthManager {
+public final class TokenManager {
     private let keychainService: KeychainServicable
     private let encoderService: EncoderServicable
     private let decoderService: DecoderServicable
@@ -26,7 +26,7 @@ public final class AuthManager {
     }
 }
 
-extension AuthManager: AuthManagable {
+extension TokenManager: TokenManagable {
     public func fetchAccessToken() throws -> String {
         let data = try keychainService.read(key: .accessToken)
         return try decoderService.decode(data: data)

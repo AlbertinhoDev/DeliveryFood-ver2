@@ -10,7 +10,7 @@ public final class AuthAPIService {
     private let encoderService: EncoderServicable
     private let decoderService: DecoderServicable
     private let networkService: Networkable
-    private let authManager: AuthManagable
+    private let authManager: TokenManagable
     
     public init(
         encoderService: EncoderServicable = EncoderService(),
@@ -19,7 +19,7 @@ public final class AuthAPIService {
     ) {
         self.encoderService = encoderService
         self.decoderService = decoderService
-        self.authManager = AuthManager(
+        self.authManager = TokenManager(
             keychainService: keychainService,
             encoderService: encoderService,
             decoderService: decoderService

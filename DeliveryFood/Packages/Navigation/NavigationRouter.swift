@@ -19,4 +19,12 @@ extension NavigationRouter: Router {
     public func setRoot(viewController: UIViewController, animated: Bool) {
         navigtionController.setViewControllers([viewController], animated: animated)
     }
+    
+    public func present(viewController: UIViewController, animated: Bool) {
+        navigtionController.present(viewController, animated: animated)
+    }
+    
+    public func dismiss(animated: Bool) {
+        navigtionController.dismiss(animated: animated)
+    }
 }

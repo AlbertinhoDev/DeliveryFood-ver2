@@ -21,7 +21,9 @@ let project = Project(
             dependencies: [
                 .target(name: "Navigation"),
                 .target(name: "Map"),
-                .target(name: "Catalog")
+                .target(name: "Catalog"),
+                .target(name: "Auth"),
+                .target(name: "Profile")
             ]
         ),
         .target(
@@ -56,6 +58,34 @@ let project = Project(
             bundleId: "io.tuist.Catalog",
             infoPlist: .default,
             sources: ["DeliveryFood/Flows/Catalog/**"],
+            resources: [],
+            dependencies: [
+                .target(name: "Navigation"),
+                .target(name: "DesignSystem"),
+                .target(name: "Core")
+            ]
+        ),
+        .target(
+            name: "Auth",
+            destinations: .iOS,
+            product: .framework,
+            bundleId: "io.tuist.Auth",
+            infoPlist: .default,
+            sources: ["DeliveryFood/Flows/Auth/**"],
+            resources: [],
+            dependencies: [
+                .target(name: "Navigation"),
+                .target(name: "DesignSystem"),
+                .target(name: "Core")
+            ]
+        ),
+        .target(
+            name: "Profile",
+            destinations: .iOS,
+            product: .framework,
+            bundleId: "io.tuist.Profile",
+            infoPlist: .default,
+            sources: ["DeliveryFood/Flows/Profile/**"],
             resources: [],
             dependencies: [
                 .target(name: "Navigation"),

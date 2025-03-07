@@ -1,3 +1,3 @@
 public protocol CoordinatorOutput {
-    var finishFlow: (() -> Void)? {get}
+    var onFinishFlow: (() -> Void)? {get}
 }

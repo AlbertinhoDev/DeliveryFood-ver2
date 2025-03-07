@@ -3,7 +3,7 @@ import UIKit
 
 extension Map {
     public final class FlowCoordinator: Navigation.CoordinatorOutput {
-        public var finishFlow: (() -> Void)?
+        public var onFinishFlow: (() -> Void)?
         
         private let router: Navigation.Router
         private let screenBuilder: Map.ScreenBuildable
@@ -30,6 +30,6 @@ extension Map.FlowCoordinator: Navigation.Coordinator {
 
 extension Map.FlowCoordinator: Map.Screen.Map.RoutingLogic {
     public func showCatalogScreen() {
-        finishFlow?()
+        onFinishFlow?()
     }
 }

@@ -10,4 +10,12 @@ extension Catalog.Screen.Product.Presenter: Catalog.Screen.Product.PresentationL
     func didTapButton() {
         router?.showMapScreen()
     }
+    
+    func didTapPromotion() {
+        router?.showPromotionScreen()
+    }
+    
+    func didTapBackButton() {
+        router?.back()
+    }
 }

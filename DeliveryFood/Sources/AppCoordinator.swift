@@ -1,4 +1,3 @@
-import Catalog
 import Map
 import Navigation
 import UIKit
@@ -6,9 +5,11 @@ import UIKit
 final class AppCoordinator {
     private let window: UIWindow
     private let router: Router
+    private var currentCoordinator: Coordinator?
     
     init() {
         let navigationController = UINavigationController()
+        navigationController.isNavigationBarHidden = true
         let router = NavigationRouter(navigtionController: navigationController)
         let window = UIWindow()
         window.rootViewController = navigationController
@@ -19,18 +20,22 @@ final class AppCoordinator {
     }
     private func startMapFlow() {
         let mapCoordinator = Map.FlowCoordinator(router: router)
-        mapCoordinator.finishFlow = { [unowned self] in
-            startCatalogFlow()
+        mapCoordinator.onFinishFlow = { [unowned self] in
+            currentCoordinator = nil
+            startTabBarFlow()
         }
         mapCoordinator.start()
+        currentCoordinator = mapCoordinator
     }
     
-    private func startCatalogFlow() {
-        let catalogCoordinator = Catalog.FlowCoordinator(router: router)
-        catalogCoordinator.finishFlow = { [unowned self] in
-            startMapFlow()
+    private func startTabBarFlow() {
+        let tabBarCoordinator = TabBarCoordinator(router: router)
+        tabBarCoordinator.onFinishFlow = { [unowned self] in
+            currentCoordinator = nil
+            router.pop(animated: true)
         }
-        catalogCoordinator.start()
+        tabBarCoordinator.start()
+        currentCoordinator = tabBarCoordinator
     }
 }
 
@@ -39,3 +44,4 @@ extension AppCoordinator: Coordinator {
         startMapFlow()
     }
 }
+

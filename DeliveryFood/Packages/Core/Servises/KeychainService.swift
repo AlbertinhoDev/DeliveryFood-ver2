@@ -6,7 +6,6 @@ public protocol KeychainServicable {
 }
 
 public final class KeychainService {
-//    private let kSecAttrService = "kSecAttrService.io"
     public init() {}
 }
 
@@ -16,7 +15,6 @@ extension KeychainService: KeychainServicable {
             kSecValueData: data,
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key.rawValue,
-//            kSecAttrService: kSecAttrService
         ] as CFDictionary
         
         let status = SecItemAdd(attributes, nil)
@@ -34,7 +32,6 @@ extension KeychainService: KeychainServicable {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key.rawValue,
-//            kSecAttrService: kSecAttrService,
             kSecReturnData: true
         ] as CFDictionary
         
@@ -51,7 +48,6 @@ extension KeychainService: KeychainServicable {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key.rawValue,
-//            kSecAttrService: kSecAttrService
         ] as CFDictionary
         
         let attributes = [kSecValueData: data] as CFDictionary
@@ -66,7 +62,6 @@ extension KeychainService: KeychainServicable {
         let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: key.rawValue,
-//            kSecAttrService: kSecAttrService
         ] as CFDictionary
         
         let status = SecItemDelete(query)

@@ -3,7 +3,7 @@ import UIKit
 
 extension Catalog {
     public final class FlowCoordinator: Navigation.CoordinatorOutput {
-        public var finishFlow: (() -> Void)?
+        public var onFinishFlow: (() -> Void)?
         
         private let router: Navigation.Router
         private let screenBuilder: Catalog.ScreenBuildable
@@ -28,8 +28,19 @@ extension Catalog.FlowCoordinator: Navigation.Coordinator {
     }
 }
 
+extension Catalog.FlowCoordinator: BackRoutingLogic {
+    public func back() {
+        router.pop(animated: true)
+    }
+}
+
 extension Catalog.FlowCoordinator: Catalog.Screen.Product.RoutingLogic {
     public func showMapScreen() {
-        finishFlow?()
+        onFinishFlow?()
+    }
+    
+    public func showPromotionScreen() {
+        let viewController = screenBuilder.makeProductViewController(router: self, diContainer: diContainer)
+        router.present(viewController: viewController, animated: true)
     }
 }

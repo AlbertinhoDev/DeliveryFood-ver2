@@ -1,9 +1,9 @@
 import Foundation
 
 public final class NetworkService {
-    private let authManager: AuthManagable
+    private let authManager: TokenManagable
     
-    public init(authManager: AuthManagable = AuthManager()) {
+    public init(authManager: TokenManagable = TokenManager()) {
         self.authManager = authManager
     }
 }
