@@ -26,7 +26,6 @@ extension Auth {
                 encoderService: encoderService,
                 decoderService: decoderService
             )
-            
             networkService = NetworkService(authManager: authManager)
         }
     }

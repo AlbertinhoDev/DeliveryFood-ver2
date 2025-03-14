@@ -14,6 +14,8 @@ extension Catalog.Screen.Product {
             let button1 = setupButton(title: "Show Map", target: self, selector: #selector(didTapButton))
             let button2 = setupButton(title: "Show Promotion", target: self, selector: #selector(didTapProductButton))
             view.addStackView(button1, button2)
+            
+            setupViewController()
         }
         
         private func setupViewController() {

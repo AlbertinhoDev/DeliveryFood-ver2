@@ -1,10 +1,10 @@
 import Foundation
 
 public final class NetworkService {
-    private let authManager: TokenManagable
+    private let tokenManager: TokenManagable
     
     public init(authManager: TokenManagable = TokenManager()) {
-        self.authManager = authManager
+        self.tokenManager = authManager
     }
 }
 
@@ -26,7 +26,7 @@ extension NetworkService: Networkable {
         }
     }
     
-    private func makeURLRequest (endpoint: Endpoint) throws -> URLRequest {
+    private func makeURLRequest(endpoint: Endpoint) throws -> URLRequest {
         let url = try makeURL(endpoint: endpoint)
         
         var urlRequest = URLRequest(url: url)
@@ -39,7 +39,7 @@ extension NetworkService: Networkable {
         }
 
         if endpoint.needAuth {
-            let accessToken = try authManager.fetchAccessToken()
+            let accessToken = try tokenManager.fetchAccessToken()
             urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
                 

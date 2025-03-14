@@ -23,7 +23,7 @@ extension Catalog {
 
 extension Catalog.FlowCoordinator: Navigation.Coordinator {
     public func start() {
-        let viewController = screenBuilder.makeProductViewController(router: self, diContainer: diContainer)
+        let viewController = screenBuilder.makeCatalogViewController(router: self, diContainer: diContainer)
         router.setRoot(viewController: viewController, animated: true)
     }
 }
@@ -34,7 +34,7 @@ extension Catalog.FlowCoordinator: BackRoutingLogic {
     }
 }
 
-extension Catalog.FlowCoordinator: Catalog.Screen.Product.RoutingLogic {
+extension Catalog.FlowCoordinator: Catalog.Screen.Catalog.RoutingLogic {
     public func showMapScreen() {
         onFinishFlow?()
     }
@@ -43,4 +43,8 @@ extension Catalog.FlowCoordinator: Catalog.Screen.Product.RoutingLogic {
         let viewController = screenBuilder.makeProductViewController(router: self, diContainer: diContainer)
         router.present(viewController: viewController, animated: true)
     }
+}
+
+extension Catalog.FlowCoordinator: Catalog.Screen.Product.RoutingLogic {
+
 }

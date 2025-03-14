@@ -25,8 +25,8 @@ final class TabBarCoordinator: CoordinatorOutput {
             switch type {
             case .catalog:
                 startCatalogFlow(router: router)
-            case .cart:
-                startCartFlow(router: router)
+//            case .cart:
+//                startCartFlow(router: router)
             case .profile:
                 if isUserAuth {
                     startProfileFlow(router: router)
@@ -47,22 +47,22 @@ final class TabBarCoordinator: CoordinatorOutput {
         catalogCoordinator.start()
     }
     
-    private func startCartFlow(router: Router) {
-        let cartCoordinator = Catalog.FlowCoordinator(router: router)
-        cartCoordinator.onFinishFlow = { [unowned self] in
-            startOrderFlow(router: router)
-        }
-        cartCoordinator.start()
-    }
-    
-    private func startOrderFlow(router: Router) {
-        let cartCoordinator = Catalog.FlowCoordinator(router: router)
-        cartCoordinator.onFinishFlow = { [unowned self] in
-            tabBarController.selectedIndex = .zero
-            startCartFlow(router: router)
-        }
-        cartCoordinator.start()
-    }
+//    private func startCartFlow(router: Router) {
+//        let cartCoordinator = Catalog.FlowCoordinator(router: router)
+//        cartCoordinator.onFinishFlow = { [unowned self] in
+//            startOrderFlow(router: router)
+//        }
+//        cartCoordinator.start()
+//    }
+//    
+//    private func startOrderFlow(router: Router) {
+//        let cartCoordinator = Catalog.FlowCoordinator(router: router)
+//        cartCoordinator.onFinishFlow = { [unowned self] in
+//            tabBarController.selectedIndex = .zero
+//            startCartFlow(router: router)
+//        }
+//        cartCoordinator.start()
+//    }
     
     private func startAuthFlow(router: Router) {
         let authCoordinator = Auth.FlowCoordinator(router: router)

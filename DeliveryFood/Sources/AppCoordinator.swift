@@ -6,7 +6,6 @@ final class AppCoordinator {
     private let window: UIWindow
     private let router: Router
     private var currentCoordinator: Coordinator?
-    
     init() {
         let navigationController = UINavigationController()
         navigationController.isNavigationBarHidden = true
@@ -14,10 +13,10 @@ final class AppCoordinator {
         let window = UIWindow()
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        
         self.window = window
         self.router = router
     }
+    
     private func startMapFlow() {
         let mapCoordinator = Map.FlowCoordinator(router: router)
         mapCoordinator.onFinishFlow = { [unowned self] in
@@ -38,10 +37,10 @@ final class AppCoordinator {
         currentCoordinator = tabBarCoordinator
     }
 }
-
 extension AppCoordinator: Coordinator {
     func start() {
-        startMapFlow()
+//        startMapFlow()
+        startTabBarFlow()
     }
 }
 

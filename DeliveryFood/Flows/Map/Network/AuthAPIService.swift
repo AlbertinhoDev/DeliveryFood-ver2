@@ -10,7 +10,7 @@ public final class AuthAPIService {
     private let encoderService: EncoderServicable
     private let decoderService: DecoderServicable
     private let networkService: Networkable
-    private let authManager: TokenManagable
+    private let tokenManager: TokenManagable
     
     public init(
         encoderService: EncoderServicable = EncoderService(),
@@ -19,13 +19,13 @@ public final class AuthAPIService {
     ) {
         self.encoderService = encoderService
         self.decoderService = decoderService
-        self.authManager = TokenManager(
+        self.tokenManager = TokenManager(
             keychainService: keychainService,
             encoderService: encoderService,
             decoderService: decoderService
         )
         
-        networkService = NetworkService(authManager: authManager)
+        networkService = NetworkService(authManager: tokenManager)
     }
 }
 
@@ -44,7 +44,7 @@ extension AuthAPIService: AuthAPIServicable {
         let data = try await networkService.request(endpoint: endpoint)
         
         let response: AuthLoginResponse = try decoderService.decode(data: data)
-        try authManager.save(accessToken: response.accessToken, refreshToken: response.refreshToken)
+        try tokenManager.save(accessToken: response.accessToken, refreshToken: response.refreshToken)
         
         return response
     }
