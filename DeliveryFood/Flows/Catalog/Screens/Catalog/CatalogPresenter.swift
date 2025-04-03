@@ -2,7 +2,6 @@ extension Catalog.Screen.Catalog {
     final class Presenter {
         weak var viewController: DisplayLogic?
         var router: RoutingLogic?
-        
     }
 }
 

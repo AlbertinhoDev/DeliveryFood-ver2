@@ -39,8 +39,8 @@ final class AppCoordinator {
 }
 extension AppCoordinator: Coordinator {
     func start() {
-//        startMapFlow()
-        startTabBarFlow()
+        startMapFlow()
+//        startTabBarFlow()
     }
 }
 

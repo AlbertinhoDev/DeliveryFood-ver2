@@ -6,22 +6,19 @@ import UIKit
 
 final class TabBarCoordinator: CoordinatorOutput {
     var onFinishFlow: (() -> Void)?
-    
     private let router: Router
     private let tabBarController = UITabBarController()
     private let isUserAuth = false
-    
+
     init(router: Router) {
         self.router = router
     }
     
     private func setupTabBarController() {
         var viewControllers: [UIViewController] = []
-        
         TabType.allCases.forEach { type in
             let navigationController = makeNavigationController(for: type)
             let router = NavigationRouter(navigtionController: navigationController)
-            
             switch type {
             case .catalog:
                 startCatalogFlow(router: router)
@@ -34,10 +31,8 @@ final class TabBarCoordinator: CoordinatorOutput {
                     startAuthFlow(router: router)
                 }
             }
-            
             viewControllers.append(navigationController)
         }
-        
         tabBarController.viewControllers = viewControllers
     }
     
@@ -84,10 +79,8 @@ final class TabBarCoordinator: CoordinatorOutput {
         let navigationController = UINavigationController()
         navigationController.tabBarItem.title = type.title
         navigationController.tabBarItem.image = UIImage(systemName: type.imageName)
-        
         return navigationController
     }
-    
 }
 
 extension TabBarCoordinator: Coordinator {

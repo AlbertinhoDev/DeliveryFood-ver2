@@ -37,7 +37,6 @@ extension Catalog.Screen.Catalog {
                 tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         }
-
     }
 }
 
@@ -88,29 +87,5 @@ extension Catalog.Screen.Catalog.ViewController: Catalog.Screen.Catalog.DisplayL
 extension Catalog.Screen.Catalog.ViewController: NavigationBarDelegate {
     func didTapBackButton() {
         presenter?.didTapBackButton()
-    }
-}
-
-final class PromotionsTableViewCell: TableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setupCell()
-    }
-
-    private func setupCell() {
-        backgroundColor = .yellow
-    }
-}
-
-final class CategoriesTableViewCell: TableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setupCell()
-    }
-    
-    private func setupCell() {
-        backgroundColor = .orange
     }
 }

@@ -1,6 +1,17 @@
 import UIKit
 
 extension UIView {
+    public func addLayoutSubview(_ view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+    }
+    
+    public func addLayoutSubviews(_ views: UIView...) {
+        views.forEach {
+            addLayoutSubview($0)
+        }
+    }
+    
     public func addStackView(_ views: UIView...) {
         let stackView = UIStackView()
         stackView.axis = .vertical

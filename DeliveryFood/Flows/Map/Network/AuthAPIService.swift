@@ -24,7 +24,6 @@ public final class AuthAPIService {
             encoderService: encoderService,
             decoderService: decoderService
         )
-        
         networkService = NetworkService(authManager: tokenManager)
     }
 }

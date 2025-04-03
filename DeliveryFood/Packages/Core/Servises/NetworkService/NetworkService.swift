@@ -9,7 +9,6 @@ public final class NetworkService {
 }
 
 extension NetworkService: Networkable {
-   
     public func request(endpoint: Endpoint) async throws -> Data {
         let urlRequest = try makeURLRequest(endpoint: endpoint)
         let (data, urlResponse) = try await URLSession.shared.data(for: urlRequest)
@@ -28,7 +27,6 @@ extension NetworkService: Networkable {
     
     private func makeURLRequest(endpoint: Endpoint) throws -> URLRequest {
         let url = try makeURL(endpoint: endpoint)
-        
         var urlRequest = URLRequest(url: url)
         
         urlRequest.httpMethod = endpoint.method.rawValue
@@ -42,7 +40,6 @@ extension NetworkService: Networkable {
             let accessToken = try tokenManager.fetchAccessToken()
             urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-                
         return urlRequest
     }
     
