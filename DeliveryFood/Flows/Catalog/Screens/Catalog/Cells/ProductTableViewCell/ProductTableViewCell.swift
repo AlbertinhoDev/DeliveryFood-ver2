@@ -2,7 +2,6 @@ import DesignSystem
 import UIKit
 
 final class ProductTableViewCell: TableViewCell {
-    
     private let productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .brown
@@ -31,11 +30,39 @@ final class ProductTableViewCell: TableViewCell {
         return label
     }()
     
+    private let counterStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 4
+        return stackView
+    }()
+    
     private lazy var addButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var plusButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.addTarget(self, action: #selector(didTapPlusButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var minusButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "minus"), for: .normal)
+        button.addTarget(self, action: #selector(didTapMinusButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private let countLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        return label
     }()
     
     private let commonStackView: UIStackView = {
@@ -68,6 +95,9 @@ final class ProductTableViewCell: TableViewCell {
         return stackView
     }()
     
+    private var plusAction: (() -> Void)?
+    private var minusAction: (() -> Void)?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -77,6 +107,12 @@ final class ProductTableViewCell: TableViewCell {
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
         priceLabel.text = model.price
+        countLabel.text = "\(model.count)"
+        plusAction = model.plusAction
+        minusAction = model.minusAction
+        
+        counterStackView.isHidden = model.count == .zero
+        addButton.isHidden = model.count != .zero
     }
     
     private func setupCell() {
@@ -99,7 +135,14 @@ final class ProductTableViewCell: TableViewCell {
         
         infoStackView.addArrangedSubviews([
             priceLabel,
-            addButton
+            addButton,
+            counterStackView
+        ])
+        
+        counterStackView.addArrangedSubviews([
+            minusButton,
+            countLabel,
+            plusButton
         ])
         
         NSLayoutConstraint.activate([
@@ -114,6 +157,14 @@ final class ProductTableViewCell: TableViewCell {
     }
     
     @objc func didTapAddButton() {
-        print(#function)
+        plusAction?()
+    }
+    
+    @objc func didTapPlusButton() {
+        plusAction?()
+    }
+    
+    @objc func didTapMinusButton() {
+        minusAction?()
     }
 }

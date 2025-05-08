@@ -12,7 +12,7 @@ extension Catalog.Screen.Product {
             
             view.backgroundColor = .systemBackground
             let button1 = setupButton(title: "Show Map", target: self, selector: #selector(didTapButton))
-            let button2 = setupButton(title: "Show Promotion", target: self, selector: #selector(didTapProductButton))
+            let button2 = setupButton(title: "Add Product", target: self, selector: #selector(didTapProductButton))
             view.addStackView(button1, button2)
             
             setupViewController()
@@ -29,7 +29,7 @@ extension Catalog.Screen.Product {
                 navigationBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
             ])
             
-            navigationBar.configure(title: "Title123", delegate: self)
+//            navigationBar.configure(title: "Title123", delegate: self)
         }
         
         @objc private func didTapButton() {
@@ -37,7 +37,7 @@ extension Catalog.Screen.Product {
         }
         
         @objc private func didTapProductButton() {
-            presenter?.didTapPromotion()
+            presenter?.didTapAddProduct()
         }
     }
 }

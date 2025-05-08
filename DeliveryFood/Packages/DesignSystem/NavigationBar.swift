@@ -14,12 +14,12 @@ public final class NavigationBar: UIView {
         return stackView
     }()
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "house"), for: .normal)
-        button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
-        return button
-    }()
+//    private lazy var backButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setImage(UIImage(systemName: "house"), for: .normal)
+//        button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+//        return button
+//    }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -44,7 +44,7 @@ public final class NavigationBar: UIView {
     
     private func setupView() {
         addSubview(stackView)
-        stackView.addArrangedSubview(backButton)
+//        stackView.addArrangedSubview(backButton)
         stackView.addArrangedSubview(titleLabel)
         
         NSLayoutConstraint.activate([

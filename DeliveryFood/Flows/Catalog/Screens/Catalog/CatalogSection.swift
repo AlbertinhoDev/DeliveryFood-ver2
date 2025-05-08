@@ -8,7 +8,7 @@ extension Catalog.Screen.Catalog {
     enum RowType {
         case promotions
         case categories
-        case product
+        case product(ProductTableViewCellModel)
     }
 
     struct Section {

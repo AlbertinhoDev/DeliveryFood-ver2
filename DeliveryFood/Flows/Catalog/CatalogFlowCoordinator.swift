@@ -1,3 +1,4 @@
+import Core
 import Navigation
 import UIKit
 
@@ -12,7 +13,7 @@ extension Catalog {
         public init(
             router: Navigation.Router,
             screenBuilder: Catalog.ScreenBuildable = Catalog.ScreenBuilder(),
-            diContainer: Catalog.DiContainerable = Catalog.DiContainer()
+            diContainer: Catalog.DiContainerable
         ) {
             self.router = router
             self.screenBuilder = screenBuilder
@@ -39,9 +40,10 @@ extension Catalog.FlowCoordinator: Catalog.Screen.Catalog.RoutingLogic {
         onFinishFlow?()
     }
     
-    public func showPromotionScreen() {
-        let viewController = screenBuilder.makeProductViewController(router: self, diContainer: diContainer)
-        router.present(viewController: viewController, animated: true)
+    public func showProductScreen(product: ProductModel) {
+        let viewController = screenBuilder.makeProductViewController(router: self, diContainer: diContainer, product: product)
+//        router.present(viewController: viewController, animated: true)
+        router.push(viewController, animated: true)
     }
 }
 

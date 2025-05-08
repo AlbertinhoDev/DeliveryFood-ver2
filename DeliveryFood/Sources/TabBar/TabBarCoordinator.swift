@@ -9,9 +9,14 @@ final class TabBarCoordinator: CoordinatorOutput {
     private let router: Router
     private let tabBarController = UITabBarController()
     private let isUserAuth = false
+    private let diContainer: TabBarDiContainerable
 
-    init(router: Router) {
+    init(
+        router: Router,
+        diContainer: TabBarDiContainerable = TabBarDiContainer()
+    ) {
         self.router = router
+        self.diContainer = diContainer
     }
     
     private func setupTabBarController() {
@@ -37,7 +42,8 @@ final class TabBarCoordinator: CoordinatorOutput {
     }
     
     private func startCatalogFlow(router: Router) {
-        let catalogCoordinator = Catalog.FlowCoordinator(router: router)
+        let catalogDiContainer = Catalog.DiContainer(cartManager: diContainer.cartManager)
+        let catalogCoordinator = Catalog.FlowCoordinator(router: router, diContainer: catalogDiContainer)
         catalogCoordinator.onFinishFlow = onFinishFlow
         catalogCoordinator.start()
     }

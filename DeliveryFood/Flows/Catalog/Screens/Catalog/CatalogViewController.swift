@@ -61,18 +61,28 @@ extension Catalog.Screen.Catalog.ViewController: UITableViewDataSource {
         case .categories:
             let cell = tableView.dequeueReusableCell(CategoriesTableViewCell.self, indexPath: indexPath)
             return cell
-        case .product:
+        case let .product(viewModel):
             let cell = tableView.dequeueReusableCell(ProductTableViewCell.self, indexPath: indexPath)
+            cell.configureCell(with: viewModel)
             return cell
         }
     }
 }
+
 extension Catalog.Screen.Catalog.ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
         let rowType = sections[section].rows[row]
         
+        switch rowType {
+        case .promotions:
+            break
+        case .categories:
+            break
+        case .product(_):
+            presenter?.didTapProduct(index: row)
+        }
         print(indexPath, rowType, row + 1)
     }
 }
